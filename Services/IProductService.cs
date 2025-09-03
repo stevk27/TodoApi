@@ -1,9 +1,9 @@
 using TodoApi.DTOs;
 
-namespace TodoApi.Service
+namespace TodoApi.Services
 {
     // Services/IProductService.cs
-public interface IProductService
+    public interface IProductService
     {
         Task<IEnumerable<ProductResponseDto>> GetAllProductsAsync();
         Task<ProductResponseDto?> GetProductByIdAsync(int id);

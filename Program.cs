@@ -1,13 +1,32 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Data;
-
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Dans Program.cs
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Mon API",
+        Version = "v1",
+        Description = "API REST pour la gestion des produits",
+        Contact = new OpenApiContact
+        {
+            Name = "Mon équipe",
+            Email = "contact@monapi.com"
+        }
+    });
+});
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -18,6 +37,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
