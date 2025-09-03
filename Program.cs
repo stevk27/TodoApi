@@ -3,11 +3,14 @@ using TodoApi.Data;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using TodoApi.Services;
+using TodoApi.Services.categorie;
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategorieService, CategorieService>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

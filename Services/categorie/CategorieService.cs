@@ -4,7 +4,8 @@ using TodoApi.Data;
 using TodoApi.DTOs;
 using TodoApi.Models;
 
-namespace TodoApi.Services.categorie 
+
+namespace TodoApi.Services.categorie
 {
     public class CategorieService : ICategorieService
     {
@@ -18,93 +19,71 @@ namespace TodoApi.Services.categorie
         public async Task<IEnumerable<CategoriesResponseDto>> GetAllCategoriesAsync()
         {
             return await _context.Categories
-                .Select(p => new CategoriesResponseDto
+                .Select(c => new CategoriesResponseDto
                 {
-                    Id = p.Id,
-                    Name = p.Name,
+                    Id = c.Id,
+                    Name = c.Name
                 })
                 .ToListAsync();
         }
 
-        public async Task<CategoriesResponseDto?> GetCategoryByIdAsync(int id)
+        public async Task<CategoriesResponseDto?> GetCategorieByIdAsync(int id)
         {
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var categorie = await _context.Categories.FindAsync(id);
 
-            if (category == null) return null;
+            if (categorie == null) return null;
 
             return new CategoriesResponseDto
             {
-                Id = category.Id,
-                Name = category.Name,
+                Id = categorie.Id,
+                Name = categorie.Name
             };
         }
 
-        public async Task<CategoriesResponseDto> CreateCategoryAsync(CategoriesCreateDto categoryDto)
+        public async Task<CategoriesResponseDto> CreateCategorieAsync(CategoriesCreateDto categorieDto)
         {
-            var category = new Category
+            var categorie = new Category
             {
-                Name = categoryDto.Name,
+                Name = categorieDto.Name
             };
 
-            _context.Categories.Add(category);
+            _context.Categories.Add(categorie);
             await _context.SaveChangesAsync();
 
-
             return new CategoriesResponseDto
             {
-                Id = category.Id,
-                Name = category.Name,
+                Id = categorie.Id,
+                Name = categorie.Name
             };
         }
 
-        public async Task<CategoriesResponseDto?> UpdateCategoryAsync(int id, CategoriesCreateDto categoryDto)
+        public async Task<CategoriesResponseDto?> UpdateCategorieAsync(int id, CategoriesCreateDto categorieDto)
         {
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var categorie = await _context.Categories.FindAsync(id);
 
-            if (category == null) return null;
+            if (categorie == null) return null;
 
-            category.Name = categoryDto.Name;
+            categorie.Name = categorieDto.Name;
 
             await _context.SaveChangesAsync();
 
             return new CategoriesResponseDto
             {
-                Id = category.Id,
-                Name = category.Name,
+                Id = categorie.Id,
+                Name = categorie.Name
             };
         }
 
-        public async Task<bool> DeleteCategoryAsync(int id)
+        public async Task<bool> DeleteCategorieAsync(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null) return false;
+            var categorie = await _context.Categories.FindAsync(id);
 
-            _context.Categories.Remove(category);
+            if (categorie == null) return false;
+
+            _context.Categories.Remove(categorie);
             await _context.SaveChangesAsync();
+
             return true;
         }
-
-        public Task<CategoriesResponseDto?> GetCategorieByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CategoriesResponseDto> CreateCategorieAsync(CategoriesCreateDto categorietDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CategoriesResponseDto?> UpdateCategorieAsync(int id, CategoriesCreateDto categorietDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> DeleteCategorieAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-    } 
-        
+    }
 }
