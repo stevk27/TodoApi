@@ -119,6 +119,7 @@ C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\TodoApi.AssemblyInfo.cs
 C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\TodoApi.csproj.CoreCompileInputs.cache
 C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\TodoApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\TodoApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\TodoApi.sourcelink.json
 C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\Steve.N\TodoApi\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json

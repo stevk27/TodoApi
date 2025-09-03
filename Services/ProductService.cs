@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using TodoApi.Data;
 using TodoApi.DTOs;
 using TodoApi.Models;
-using TodoApi.Services;
 
 namespace TodoApi.Services
 {
